@@ -16,12 +16,12 @@ if __name__ == '__main__':
     print('Scrapeing data every: ' + str((60 * INTERVAL)) + "s")
     start_http_server(PORT)
 
-    latest = Gauge('latest', 'Latest value from the simulator')
+    latest = Gauge('group_d_latest', 'Latest value from the simulator')
     connectionError = Gauge('group_d_connection_error', 'Current ConnectionError value from the simulator')
     follow = Gauge('group_d_follow', 'Current Follow error value from the simulator')
     tweet = Gauge('group_d_tweet', 'Current Tweet error value from the simulator')
     unfollow = Gauge('group_d_unfollow', 'Current Unfollow error value from the simulator')
-    readTimeout = Gauge('group_d_readTimeout', 'Current ReadTimeout error value from the simulator')
+    readTimeout = Gauge('group_d_read_timeout', 'Current ReadTimeout error value from the simulator')
     register = Gauge('group_d_register', 'Current Register error value from the simulator')
 
     while True:

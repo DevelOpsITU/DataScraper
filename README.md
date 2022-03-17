@@ -10,3 +10,16 @@ where the two graphs exists
 These graphs shows what the simulator sees and this data would be nice to track and see if we have an error, or we introduce a new error.
 
 The idea is to make a prometheus /metrics endpoint that with this data could be visualized.
+
+Current exported values are:
+- group_d_latest
+- group_d_register
+- group_d_tweet
+- group_d_follow
+- group_d_unfollow
+- group_d_read_timeout
+- group_d_connection_error
+
+
+I have only tested it very little and the dashboard could use a bit more work. Maybe a simple test application/mock data could help.
+![img_2.png](res/dashboard.png)
