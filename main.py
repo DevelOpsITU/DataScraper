@@ -1,14 +1,19 @@
 from scraper import scraper
 from prometheus_client import start_http_server, Gauge
 import time
+import datetime
 import os
 
 PORT = os.environ.get('PORT')
 if (PORT == None):
     PORT = 8080
+INTERVAL = int(os.environ.get('INTERVAL'))
+if (INTERVAL == None):
+    INTERVAL = 5
 
 if __name__ == '__main__':
-
+    print('Starting server on port: ' + str(PORT))
+    print('Scrapeing data every: ' + str((60 * INTERVAL)) + "s")
     start_http_server(PORT)
 
     latest = Gauge('latest', 'Latest value from the simulator')
@@ -20,13 +25,14 @@ if __name__ == '__main__':
     register = Gauge('group_d_register', 'Current Register error value from the simulator')
 
     while True:
-        latest.set(scraper.getLatest())
-        errors = scraper.getErrors()
-        connectionError.set(errors['ConnectionError'])
-        follow.set(errors['follow'])
-        tweet.set(errors['tweet'])
-        unfollow.set(errors['unfollow'])
-        readTimeout.set(errors['ReadTimeout'])
-        register.set(errors['register'])
+        data = scraper.getData()
+        print(str(datetime.datetime.utcnow().isoformat()) + ' => ' + str(data))
+        latest.set(data['latest'])
+        connectionError.set(data['ConnectionError'])
+        follow.set(data['follow'])
+        tweet.set(data['tweet'])
+        unfollow.set(data['unfollow'])
+        readTimeout.set(data['ReadTimeout'])
+        register.set(data['register'])
 
-        time.sleep(10)
+        time.sleep(60 * INTERVAL)

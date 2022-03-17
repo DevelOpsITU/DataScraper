@@ -1,6 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
 
+def getData() -> dict:
+    data = getErrors()
+    data.setdefault("latest", getLatest())
+
+    return data
+
 
 def getLatest() -> int:
     latestUrl = "http://164.92.246.227/chart.svg"
