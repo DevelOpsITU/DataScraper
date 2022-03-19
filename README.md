@@ -20,6 +20,8 @@ Current exported values are:
 - group_d_read_timeout
 - group_d_connection_error
 
+The dashboard can be found here: [Dashboad](./Simulator.json)
 
-I have only tested it very little and the dashboard could use a bit more work. Maybe a simple test application/mock data could help.
-![img_2.png](res/dashboard.png)
+It has only been tested it very little. The dashboard could use a bit more work. Maybe a simple test application/mock data could help.
+
+![img.png](res/dashboard.png)
